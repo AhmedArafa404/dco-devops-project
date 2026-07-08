@@ -1,0 +1,16 @@
+{
+  "name": "dco-app",
+  "version": "1.0.0",
+  "description": "DevOps-Enabled Cloud Resource Optimizer - Sample Demo Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
