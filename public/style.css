@@ -1,0 +1,43 @@
+body{
+
+    background:#0f172a;
+
+    color:white;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+}
+
+.dashboard-card{
+
+    background:#1e293b;
+
+    border:none;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.card-body{
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+h2{
+
+    margin-top:20px;
+
+    color:#22c55e;
+
+}
