@@ -7,24 +7,26 @@ on:
 
 jobs:
   build-and-test:
-
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Run Tests
+        run: npm test
 
-    - name: Run Tests
-      run: npm test
+      - name: Build Docker Image
+        run: docker build -t dco-app:${{ github.sha }} .
 
-    - name: Build Docker Image
-      run: docker build -t dco-app:latest .
+      - name: Verify Docker Image
+        run: docker images
