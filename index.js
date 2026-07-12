@@ -1,6 +1,6 @@
 const express = require('express');
 const os = require('os');
-
+const metrics = require('./metrics');
 const app = express();
 app.use(express.static('public'));
 const PORT = process.env.PORT || 3000;
@@ -40,6 +40,24 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+app.get("/api/system", (req, res) => {
+
+    const totalMemory = os.totalmem();
+    const freeMemory = os.freemem();
+
+    res.json({
+        hostname: os.hostname(),
+        platform: os.platform(),
+        cpuCount: os.cpus().length,
+        totalMemory: Math.round(totalMemory / 1024 / 1024),
+        freeMemory: Math.round(freeMemory / 1024 / 1024),
+        usedMemory: Math.round((totalMemory - freeMemory) / 1024 / 1024),
+        loadAverage: os.loadavg(),
+        uptime: Math.floor(os.uptime())
+    });
+
+});
+app.get('/metrics', metrics);
 
 if (require.main === module) {
   app.listen(PORT, () => {

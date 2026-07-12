@@ -23,6 +23,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/index.js ./index.js
+COPY --from=builder /app/metrics.js ./metrics.js
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package*.json ./
 

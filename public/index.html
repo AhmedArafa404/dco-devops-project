@@ -1,86 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>DCO Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link
-        rel="stylesheet"
+    <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
-
 <body>
 
-<div class="container py-4">
+<div class="layout">
 
-    <h1 class="text-center mb-5">
-        🚀 DCO Cloud Resource Optimizer
-    </h1>
+    <aside class="sidebar" id="sidebar">
 
-    <div class="row g-4">
+        <div class="logo">
 
-        <div class="col-md-4">
-            <div class="card dashboard-card">
-                <div class="card-body">
+            <i class="fa-solid fa-cloud"></i>
 
-                    <h5>
-                        <i class="fa-solid fa-circle-check text-success"></i>
-                        Application
-                    </h5>
+            <span>DCO</span>
 
-                    <h2 id="status">
-                        Running
-                    </h2>
-
-                </div>
-            </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card dashboard-card">
-                <div class="card-body">
+        <ul>
 
-                    <h5>
-                        <i class="fa-brands fa-docker"></i>
-                        Docker
-                    </h5>
+            <li class="active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </li>
 
-                    <h2>
-                        Healthy
-                    </h2>
+            <li>
+                <i class="fa-brands fa-docker"></i>
+                <span>Docker</span>
+            </li>
 
-                </div>
+            <li>
+                <i class="fa-solid fa-network-wired"></i>
+                <span>Kubernetes</span>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Monitoring</span>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-rocket"></i>
+                <span>Deployments</span>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <main class="content">
+
+        <header class="topbar">
+
+            <button id="menuBtn">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+            <h2>DCO Cloud Resource Optimizer</h2>
+
+            <div class="online">
+
+                <i class="fa-solid fa-circle"></i>
+
+                Online
+
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card dashboard-card">
-                <div class="card-body">
+        </header>
+<div class="cards">
 
-                    <h5>
-                        <i class="fa-solid fa-server"></i>
-                        Environment
-                    </h5>
+    <div class="card-box">
+        <h5><i class="fa-solid fa-circle-check"></i> Application</h5>
+        <h3 id="app-status">Loading...</h3>
+    </div>
 
-                    <h2>
-                        Production
-                    </h2>
+    <div class="card-box">
+        <h5><i class="fa-brands fa-docker"></i> Docker</h5>
+        <h3 id="docker-status">Healthy</h3>
+    </div>
 
-                </div>
-            </div>
-        </div>
+    <div class="card-box">
+        <h5><i class="fa-solid fa-server"></i> Hostname</h5>
+        <h3 id="hostname">Loading...</h3>
+    </div>
 
+    <div class="card-box">
+        <h5><i class="fa-regular fa-clock"></i> Uptime</h5>
+        <h3 id="uptime">Loading...</h3>
     </div>
 
 </div>
+<section class="system-info">
+
+    <h3>System Information</h3>
+
+    <table>
+
+        <tr>
+            <td>Platform</td>
+            <td id="platform">Loading...</td>
+        </tr>
+
+        <tr>
+            <td>Current Time</td>
+            <td id="current-time">Loading...</td>
+        </tr>
+
+        <tr>
+            <td>Started At</td>
+            <td id="started-at">Loading...</td>
+        </tr>
+
+    </table>
+
+</section>
+        <!-- هنا هنكمل باقي الـ Cards والـ Charts بعد شوية -->
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="script.js"></script>
 
