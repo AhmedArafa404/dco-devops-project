@@ -1,0 +1,23 @@
+name: DCO Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Stop Containers
+        run: docker compose down || true
+
+      - name: Build and Start Containers
+        run: docker compose up -d --build
+
+      - name: Show Running Containers
+        run: docker compose ps
