@@ -13,11 +13,32 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Stop Containers
+      - name: Stop Docker Containers
         run: docker compose down || true
 
-      - name: Build and Start Containers
+      - name: Build and Start Docker Containers
         run: docker compose up -d --build
 
-      - name: Show Running Containers
+      - name: Show Running Docker Containers
         run: docker compose ps
+
+      - name: Import DCO Image into K3s
+        run: |
+          docker save dco-devops-project-app:latest | sudo k3s ctr images import -
+
+      - name: Apply Kubernetes Configuration
+        run: |
+          sudo kubectl apply -f kubernetes/dco-deployment.yml
+          sudo kubectl apply -f kubernetes/dco-hpa.yml
+
+      - name: Restart Kubernetes Deployment
+        run: |
+          sudo kubectl rollout restart deployment/dco-app
+          sudo kubectl rollout status deployment/dco-app --timeout=120s
+
+      - name: Show Kubernetes Status
+        run: |
+          sudo kubectl get deployment dco-app
+          sudo kubectl get pods
+          sudo kubectl get hpa
+          sudo kubectl get service dco-app-service
